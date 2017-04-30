@@ -16,7 +16,8 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -32,7 +33,6 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: 'file-loader?name=images/[hash:6].[ext]'
-        // use: 'file-loader?name=[hash:6].[ext]&publicPath=dist/&outputPath=images/' //html bien
       }
     ]
   },
@@ -43,17 +43,18 @@ module.exports = {
     open: false,
     overlay: true,
     port: 3000,
-    hot: false
+    hot: false,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-        title: 'Nuevo Proyecto',
+        title: 'Weather React',
         minify: {
             collapseWhitespace: true
         },
         hash: true,
         template: './src/index.html',
-        // filename: isProd ? './../index.html' : 'index.html'
+        filename: isProd ? '200.html' : 'index.html'
       }),
       new ExtractTextPlugin({
          filename: 'main.css',

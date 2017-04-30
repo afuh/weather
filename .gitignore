@@ -32,6 +32,6 @@ Temporary Items
 
 node_modules
 .eslintrc
-
+dist
 
 # Created by https://www.gitignore.io

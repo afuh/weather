@@ -5,7 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "prop-types": "^15.5.8",
+    "react-router-dom": "^4.1.1",
+    "axios": "^0.16.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -15,7 +18,6 @@
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
-    "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.3.0",
     "node-sass": "^4.5.2",
@@ -27,10 +29,10 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "prod": "npm run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf ./dist/*",
-    "deploy": "npm run prod && gh-pages -d dist"
+    "deploy": "npm run prod && surge dist naughty-joke.surge.sh"
   },
   "babel": {
     "presets": [
