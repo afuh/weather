@@ -33,7 +33,7 @@ class Search extends React.Component {
           <Link
             className='btn'
             to={{
-              pathname: `/forecast/`,
+              pathname: `/forecast`,
               search: `?city=${input}`,
             }}
             >

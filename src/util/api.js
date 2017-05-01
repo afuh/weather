@@ -18,7 +18,7 @@ export function getCurrent(city) {
     .catch(handleError);
 }
 
-export function getForecast(city, days = 5) {
+export function getForecast(city, days = 6) {
   return axios.get(`${api}${forecast}${city}${options}${apiKey}&cnt=${days}`)
     .then(current => current.data)
     .catch(handleError);
@@ -51,10 +51,10 @@ function handleError(error){
     };
 })();
 
-export const getDate = (n) => {
+export function getDate (n) {
   const date = new Date();
   const day = date.getDayName(n);
   const month = date.getMonthName();
 
   return `${day}, ${month} ${date.getDate() + n}`;
-};
+}
