@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 
 import forecast from "./Forecast";
+import { getCityByIp as ip} from "../util/api";
 
 class Search extends React.Component {
   constructor(props){
@@ -11,22 +12,16 @@ class Search extends React.Component {
       input: ""
     }
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  componentDidMount(){
+    ip().then(data => this.setState({input: data.city}))
   }
   handleChange(e) {
-    const input = e.target.value;
-    this.setState(function() {
-      return {
-        input: input
-      }
-    });
-    forecast(this.state.input)
-  }
-  handleSubmit(e) {
-    e.preventDefault()
-    forecast(this.state.input)
+    const value = e.target.value;
+    this.setState({input: value});
   }
   render () {
+    const input = this.state.input;
     return (
         <div className={`${this.props.direction} form`}>
           <input
@@ -35,13 +30,15 @@ class Search extends React.Component {
             type="text"
             onChange={this.handleChange}>
           </input>
-          <button
-            className="btn"
-            onClick={this.handleSubmit}
-            type="submit"
+          <Link
+            className='btn'
+            to={{
+              pathname: `/forecast/`,
+              search: `?city=${input}`,
+            }}
             >
               Get Weather
-            </button>
+          </Link>
         </div>
     )
   }
@@ -67,3 +64,13 @@ Search.defaultProps = {
     Get Weather
 </Link>
 */
+
+/*
+<button
+  className="btn"
+  onClick={this.handleSubmit}
+  type="submit"
+  >
+    Get Weather
+  </button>
+  */

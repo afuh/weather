@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        use: 'file-loader?name=images/[hash:6].[ext]'
+        use: 'file-loader?name=images/[name].[ext]'
       }
     ]
   },
@@ -43,7 +43,7 @@ module.exports = {
     open: false,
     overlay: true,
     port: 3000,
-    hot: false,
+    hot: true,
     historyApiFallback: true
   },
   plugins: [

@@ -7,7 +7,7 @@ import {
 
 import Header from "./Header";
 import Home from "./Home";
-import forecast from "./Forecast";
+import Forecast from "./Forecast";
 
 
 class App extends React.Component {
@@ -18,7 +18,7 @@ class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/forecast" component={forecast} />
+            <Route path="/forecast" component={Forecast} />
             <Route render={() =>  <p>Not Found T_T </p> } />
           </Switch>
         </div>
