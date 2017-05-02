@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-/*
-Current Weather: http://api.openweathermap.org/data/2.5/weather?q=CITY-NAME&type=accurate&APPID=YOUR-API-KEY
-5 Day Forecast:
-http://api.openweathermap.org/data/2.5/forecast/daily?q=CITY-NAME&type=accurate&APPID=YOUR-API-KEY&cnt=5
-*/
-
 const api = "http://api.openweathermap.org/data/2.5/";
 const day = "weather?q=";
 const forecast = "forecast/daily?q=";
@@ -31,30 +25,36 @@ export function getCityByIp() {
     .catch(handleError);
 }
 
+export function getWeather(city){
+  return axios.all([
+    getCurrent(city),
+    getForecast(city),
+  ]).then(data => {
+    const current = data[0];
+    const forecast = data[1];
+
+    return {
+      current: current,
+      forecast: forecast,
+    };
+  })
+    .catch(handleError);
+}
+
 function handleError(error){
     console.warn("T_T", error);
     return null;
 }
 
 
-
 // ==== Date ===
-(function(){
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-  Date.prototype.getMonthName = function() {
-    return months[ this.getMonth()];
-    };
-  Date.prototype.getDayName = function(n = 0) {
-    return days[ this.getDay() + n];
-    };
-})();
+export function getDate (dt) {
+  const date = new Date(dt * 1000);
+  const day = days[date.getDay()];
+  const month = months[date.getMonth()];
 
-export function getDate (n) {
-  const date = new Date();
-  const day = date.getDayName(n);
-  const month = date.getMonthName();
-
-  return `${day}, ${month} ${date.getDate() + n}`;
+  return `${day}, ${month} ${date.getDate()}`;
 }

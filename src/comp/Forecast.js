@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from "prop-types";
 import queryString from 'query-string';
 
-import Week from "./Week"
+import Weather from "./Weather"
 import Loading from "./Loading";
-import { getForecast, getCityByIp as ip } from "../util/api"
+import { getWeather } from "../util/api"
 
 class Forecast extends React.Component {
   constructor(props){
@@ -12,6 +12,7 @@ class Forecast extends React.Component {
     this.state = {
       city: "",
       country: "",
+      temp: "",
       week: [],
       loading: true,
       error: ""
@@ -26,7 +27,7 @@ class Forecast extends React.Component {
     this.request(loc);
   }
   request(loc) {
-    getForecast(loc.city, 6).then(data => {
+    getWeather(loc.city).then(data => {
       if (data === null) {
         return this.setState(function(){
           return {
@@ -37,9 +38,10 @@ class Forecast extends React.Component {
       }
       this.setState(function() {
         return {
-          city: data.city.name,
-          country: data.city.country,
-          week: data.list,
+          city: data.forecast.city.name,
+          country: data.forecast.city.country,
+          week: data.forecast.list,
+          temp: data.current.main.temp,
           loading: false
         }
       })
@@ -51,7 +53,8 @@ class Forecast extends React.Component {
     const info = {
       city: this.state.city,
       week: this.state.week,
-      country: this.state.country
+      country: this.state.country,
+      temp: this.state.temp
     }
     if (loading) {
       return <Loading />
@@ -61,10 +64,8 @@ class Forecast extends React.Component {
     }
     return (
       <div>
-        <Week
-          city={info.city}
-          code={info.country}
-          week={info.week}
+        <Weather
+          info={info}
         />
       </div>
     )

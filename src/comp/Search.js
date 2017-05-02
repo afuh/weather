@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 
-import forecast from "./Forecast";
 import { getCityByIp as ip} from "../util/api";
 
 class Search extends React.Component {
@@ -49,28 +47,3 @@ export default Search;
 Search.defaultProps = {
   direction: 'col'
 }
-
-
-
-
-/*
-<Link
-  className='btn'
-  to={{
-    pathname: `forecast/`,
-    search: `?city=${this.state.input}`,
-  }}
-  >
-    Get Weather
-</Link>
-*/
-
-/*
-<button
-  className="btn"
-  onClick={this.handleSubmit}
-  type="submit"
-  >
-    Get Weather
-  </button>
-  */
