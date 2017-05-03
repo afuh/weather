@@ -11,10 +11,10 @@ const Todaytemp = (props) => {
     temp: props.data.current.main.temp
   }
   return (
-    <div className="today-cont">
-      <h1>{info.city}, {info.country}</h1>
-      <h2>{Math.round(info.temp)} °C</h2>
-    </div>
+      <div className="city-temp-cont">
+        <h1>{info.city}, {info.country}</h1>
+        <h2>{Math.round(info.temp)} °C</h2>
+      </div>
   )
 }
 Todaytemp.propTypes = {

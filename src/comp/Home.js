@@ -3,7 +3,7 @@ import Search from './Search';
 
 const Home = (props) => {
   return (
-    <main className="col">
+    <main className="col home">
       <h1>Enter a City</h1>
       <Search
         direction="col"

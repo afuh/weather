@@ -43,7 +43,6 @@ class Forecast extends React.Component {
   render() {
     const error = this.state.error;
     const loading = this.state.loading;
-    const info = {}
 
     if (loading) {
       return <Loading />

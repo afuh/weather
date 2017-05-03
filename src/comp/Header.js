@@ -5,9 +5,9 @@ import Search from "./Search";
 
 const Header = (props) => {
   return (
-    <header className="row">
+    <header className="navbar row">
       <Link to="/">
-        <span className="home-btn">Home</span>
+        <span className="home-btn">home</span>
       </Link>
       <Search
         direction="row"
