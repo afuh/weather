@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app-container col">
-          <Header />
+          <Route component={Header}/>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/forecast" component={Forecast} />

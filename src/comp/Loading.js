@@ -11,7 +11,6 @@ const style = {
 class Loading extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       text: props.text
     };

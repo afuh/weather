@@ -13,6 +13,9 @@ body
   background: url("./images/pattern.svg") center center no-repeat
   background-size: cover
 
+h1,h2,h3
+  font-weight: 300
+
 .col
   display: flex
   flex-direction: column
@@ -62,7 +65,6 @@ main
 .weather
   background: transparent
   h1, h2
-    font-weight: 300
     text-align: center
 
 .week-cont
@@ -84,16 +86,33 @@ main
   img
     width: 30%
     height: auto
-  h2, h3
-    font-weight: 300
   &:hover
     transform: scale(1.03)
 
 .detail-cont
-  height: 80%
-  justify-content: center
+  margin: 30px auto
+  width: 500px
+  height: 600px
+  justify-content: space-around
   align-items: center
   background: rgba(white, 0.1)
-
-.today-cont
-  border-bottom: 1px solid lightgray
+  p
+    font-size: 20px
+    margin: 2px
+  img
+    width: 40%
+    height: auto
+  button
+    width: 100%
+    color: rgba(white, 0.2)
+    margin: 20px auto 0
+    padding: 10px
+    background: transparent
+    border: none
+    font-size: 40px
+    cursor: pointer
+    transition: color 0.3s
+    &:focus
+      outline: none
+    &:hover
+      color: rgba(white, 0.7)

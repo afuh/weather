@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import queryString from 'query-string';
 
-import Weather from "./Weather"
+import { Weather } from "./Weather"
 import Loading from "./Loading";
 import { getWeather } from "../util/api"
 
@@ -10,10 +9,7 @@ class Forecast extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      city: "",
-      country: "",
-      temp: "",
-      week: [],
+      data: {},
       loading: true,
       error: ""
     }
@@ -36,12 +32,9 @@ class Forecast extends React.Component {
           }
         })
       }
-      this.setState(function() {
+      this.setState(function(){
         return {
-          city: data.forecast.city.name,
-          country: data.forecast.city.country,
-          week: data.forecast.list,
-          temp: data.current.main.temp,
+          data: data,
           loading: false
         }
       })
@@ -50,12 +43,8 @@ class Forecast extends React.Component {
   render() {
     const error = this.state.error;
     const loading = this.state.loading;
-    const info = {
-      city: this.state.city,
-      week: this.state.week,
-      country: this.state.country,
-      temp: this.state.temp
-    }
+    const info = {}
+
     if (loading) {
       return <Loading />
     }
@@ -65,7 +54,8 @@ class Forecast extends React.Component {
     return (
       <div>
         <Weather
-          info={info}
+          info={this.state.data}
+          loc={this.props}
         />
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 import { getCityByIp as ip} from "../util/api";
 
@@ -9,10 +9,14 @@ class Search extends React.Component {
     this.state = {
       input: ""
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount(){
     ip().then(data => this.setState({input: data.city}))
+  }
+  handleSubmit() {
+    this.props.onSubmit(this.state.input)
   }
   handleChange(e) {
     const value = e.target.value;
@@ -28,15 +32,13 @@ class Search extends React.Component {
             type="text"
             onChange={this.handleChange}>
           </input>
-          <Link
+          <button
+            type='button'
             className='btn'
-            to={{
-              pathname: `/forecast`,
-              search: `?city=${input}`,
-            }}
+            onClick={this.handleSubmit}
             >
               Get Weather
-          </Link>
+          </button>
         </div>
     )
   }
@@ -46,4 +48,8 @@ export default Search;
 
 Search.defaultProps = {
   direction: 'col'
+}
+
+Search.propTypes = {
+  direction: PropTypes.string
 }
