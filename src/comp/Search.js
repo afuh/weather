@@ -7,13 +7,17 @@ class Search extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      input: ""
+      input: "",
+      ip: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount(){
-    ip().then(data => this.setState({input: data.city}))
+    ip().then(data => this.setState({
+      input: data.city,
+      ip: `${data.city}, ${data.country}`
+    }))
   }
   handleSubmit() {
     this.props.onSubmit(this.state.input)
@@ -27,7 +31,7 @@ class Search extends React.Component {
     return (
         <div className={`${this.props.direction} form`}>
           <input
-            placeholder="Berlin"
+            placeholder={this.state.ip}
             autoComplete='off'
             type="text"
             onChange={this.handleChange}>
