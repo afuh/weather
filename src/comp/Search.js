@@ -19,8 +19,9 @@ class Search extends React.Component {
       ip: `${data.city}, ${data.country}`
     }))
   }
-  handleSubmit() {
+  handleSubmit(e) {
     this.props.onSubmit(this.state.input)
+    e.preventDefault()
   }
   handleChange(e) {
     const value = e.target.value;
@@ -29,21 +30,19 @@ class Search extends React.Component {
   render () {
     const input = this.state.input;
     return (
-        <div className={`${this.props.direction} form`}>
+        <form onSubmit={this.handleSubmit} className={`${this.props.direction} form`}>
           <input
             placeholder={this.state.ip}
             autoComplete='off'
             type="text"
             onChange={this.handleChange}>
           </input>
-          <button
-            type='button'
+          <input
+            type='submit'
             className='btn'
-            onClick={this.handleSubmit}
-            >
-              Get Weather
-          </button>
-        </div>
+            value="Get Weather"
+            />
+        </form>
     )
   }
 }
